@@ -5,6 +5,11 @@
         {% for link, name in menu.items %}
         <li><a href="{% url link %}" class="{% if link == url_name %} active {% endif %}">{{ name }}</a></li>
         {% endfor %}
+        {% if user.is_authenticated %} 
+            <li><a href="{% url 'users:logout' %}" class=""> Выйти </a></li>
+        {% else %}
+            <li><a href="{% url 'users:login' %}" class=""> Войти </a></li>
+        {% endif %}
     </ul>
     <a href="#" class="search"></a>
     {% endwith %}
