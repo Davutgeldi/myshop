@@ -6,6 +6,7 @@
         <li><a href="{% url link %}" class="{% if link == url_name %} active {% endif %}">{{ name }}</a></li>
         {% endfor %}
         {% if user.is_authenticated %} 
+            <li><a href="{% url 'users:edit' %}" class=""> {{ user.username }} </a></li>
             <li><a href="{% url 'users:logout' %}" class=""> Выйти </a></li>
         {% else %}
             <li><a href="{% url 'users:login' %}" class=""> Войти </a></li>

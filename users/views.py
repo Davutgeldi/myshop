@@ -2,7 +2,7 @@ from django.shortcuts import render, HttpResponseRedirect
 from django.contrib import auth
 from django.urls import reverse
 
-from users.forms import UserLoginForm, UserRegistrationForm
+from users.forms import UserLoginForm, UserRegistrationForm, UserEditForm
 
 
 def login(request):
@@ -32,8 +32,14 @@ def registration(request):
 
 
 def edit(request):
-    context = {'title': 'Редактирование пользователя'}
-    return render(request, 'users/edit.html')
+    if request.method == 'POST':
+        form = UserEditForm(instance=request.user, data=request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('index'))
+    form = UserEditForm(instance=request.user)
+    context = {'title': 'Редактирование пользователя', 'form': form}
+    return render(request, 'users/edit.html', context=context)
 
 
 def logout(request):

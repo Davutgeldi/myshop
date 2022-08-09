@@ -7,8 +7,10 @@
     <title>{{ title }}</title>
 </head>
 <body>
-    <form>
+    <form method="post" action="{% url 'users:edit' %}">
+        {% csrf_token %}
         {{ form.as_p }}
+        <input type="submit" value="Подтвердить">
     </form>
     
 </body>
