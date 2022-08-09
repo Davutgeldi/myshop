@@ -7,8 +7,11 @@
     <title>{{ title }}</title>
 </head>
 <body>
-    <form>
-        
+    <h2>Логин пользователя</h2>
+    <form method="post" action="{% url 'users:login' %}">
+        {% csrf_token %} 
+    {{ form.as_p }}         
+    <input type="submit" value="Войти">
     </form>
     
 </body>
