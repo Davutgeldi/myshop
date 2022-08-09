@@ -26,6 +26,7 @@
 						<img src="{% static 'img/slider1.jpg' %}">
 					</div>
 					<div class="slider-control">
+
 						{% for image in main_product %}
 						<div class="block">
 							<a href="#"><img src="{% static image %}" alt="">
@@ -33,6 +34,7 @@
 							</a>
 						</div>
 						{% endfor %}
+						
 					</div>
 				</div>
 
@@ -64,15 +66,15 @@
 					{% for product in products %}
 
 					<div class="block">
-						<a href="#"><img src="{% static product %}" alt="">
+						<a href="#"><img src="{{ product.image.url }}" alt="">
 							<div class="text">
 								<img src="{% static 'img/icon-hover.png' %}" alt="img">
-								<h4>Стул повышенного качества</h4>
-								<p>Не оторваться. </p>
+								<h4>{{ product.name }}</h4>
+								<p>{{ product.description }}</p>
 							</div>
 						</a>
 					</div>
-					
+
 					{% endfor %}
 				</div>
 			</div>

@@ -1,11 +1,15 @@
 from django.shortcuts import render
 
+from mainapp.models import Products
+
 
 MENU_LINKS = {
     'index': 'Главная',
     'products': 'Продукты',
     'contact': 'Контакты',
 }
+
+
 def index(request):
     context = {
         'title': 'Главная',
@@ -19,7 +23,7 @@ def products(request):
         'title': 'Продукты',
         'menu': MENU_LINKS,
         'main_product': ['img/controll.jpg', 'img/controll1.jpg', 'img/controll2.jpg'],
-        'products': ['img/product-11.jpg', 'img/product-21.jpg', 'img/product-31.jpg'] 
+        'products': Products.objects.all()
     }
     return render(request, 'mainapp/products.html', context=context)
 
